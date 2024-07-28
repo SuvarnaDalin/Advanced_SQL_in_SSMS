@@ -2,7 +2,7 @@
 
 This repository contains .sql files with advanced queries including: 
 
-- Windows functions
+- Window functions
 - Sub Queries
 - CTE's & recursive CTE's
 - Temp Tables
