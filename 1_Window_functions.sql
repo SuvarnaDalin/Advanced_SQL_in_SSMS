@@ -255,7 +255,7 @@ From AdventureWorks2019.Production.Product P
 	Inner Join AdventureWorks2019.Production.ProductCategory PC
 		On PSC.ProductCategoryID = PC.ProductCategoryID
 
---Exercise 3: Enhance with Category Price Rank (ranks all products by ListPrice – within each category - in descending order. In other words, every product within a given category should be ranked relative to other products in the same category)
+--Exercise 3: Enhance with Category Price Rank (ranks all products by ListPrice Â– within each category - in descending order. In other words, every product within a given category should be ranked relative to other products in the same category)
 Select P.Name ProductName, P.ListPrice, PSC.Name SubCategory, PC.Name Category,
 
 ROW_NUMBER() OVER(
@@ -272,7 +272,7 @@ From AdventureWorks2019.Production.Product P
 	Inner Join AdventureWorks2019.Production.ProductCategory PC
 		On PSC.ProductCategoryID = PC.ProductCategoryID
 
---Exercise 4: Enhance with "Top 5 Price In Category" (that returns the string “Yes” if a product has one of the top 5 list prices in its product category, and “No” if it does not. You can try incorporating your logic from Exercise 3 into a CASE statement to make this work.)
+--Exercise 4: Enhance with "Top 5 Price In Category" (that returns the string Â“YesÂ” if a product has one of the top 5 list prices in its product category, and Â“NoÂ” if it does not. You can try incorporating your logic from Exercise 3 into a CASE statement to make this work.)
 Select P.Name ProductName, P.ListPrice, PSC.Name SubCategory, PC.Name Category,
 
 ROW_NUMBER() OVER(
@@ -319,7 +319,7 @@ From AdventureWorks2019.Sales.SalesOrderDetail
 Order By SalesOrderID, LineTotal DESC
 
 --Exercises: OVER() & PARTITION BY & ROW_NUMBER() & RANK()
---Exercise 1: Enhance previous Exercise 4 with “Category Price Rank With Rank” that uses the RANK function to rank all products by ListPrice – within each category - in descending order)
+--Exercise 1: Enhance previous Exercise 4 with Â“Category Price Rank With RankÂ” that uses the RANK function to rank all products by ListPrice Â– within each category - in descending order)
 Select P.Name ProductName, P.ListPrice, PSC.Name SubCategory, PC.Name Category,
 
 ROW_NUMBER() OVER(
@@ -345,7 +345,7 @@ From AdventureWorks2019.Production.Product P
 	Inner Join AdventureWorks2019.Production.ProductCategory PC
 		On PSC.ProductCategoryID = PC.ProductCategoryID
 
---Exercise 2: Enhance with "Category Price Rank With Dense Rank" that that uses the DENSE_RANK function to rank all products by ListPrice – within each category - in descending order
+--Exercise 2: Enhance with "Category Price Rank With Dense Rank" that that uses the DENSE_RANK function to rank all products by ListPrice Â– within each category - in descending order
 Select P.Name ProductName, P.ListPrice, PSC.Name SubCategory, PC.Name Category,
 
 ROW_NUMBER() OVER(
@@ -375,7 +375,7 @@ From AdventureWorks2019.Production.Product P
 	Inner Join AdventureWorks2019.Production.ProductCategory PC
 		On PSC.ProductCategoryID = PC.ProductCategoryID
 
---Exercise 3: Correct “Top 5 Price In Category” (most appropriate to return a true top 5 products by price, assuming we want to see the top 5 distinct prices AND we want “ties” (by price) to all share the same rank.)
+--Exercise 3: Correct Â“Top 5 Price In CategoryÂ” (most appropriate to return a true top 5 products by price, assuming we want to see the top 5 distinct prices AND we want Â“tiesÂ” (by price) to all share the same rank.)
 Select P.Name ProductName, P.ListPrice, PSC.Name SubCategory, PC.Name Category,
 
 ROW_NUMBER() OVER(
@@ -438,7 +438,7 @@ From AdventureWorks2019.Purchasing.PurchaseOrderHeader P
  Where YEAR(P.OrderDate) >= 2013
 	And P.TotalDue > 500
 
--- Exercise 2: Enhance with "PrevOrderFromVendorAmt", (returns the “previous” TotalDue value (relative to the current row) within the group of all orders with the same vendor ID. We are defining “previous” based on order date.)
+-- Exercise 2: Enhance with "PrevOrderFromVendorAmt", (returns the Â“previousÂ” TotalDue value (relative to the current row) within the group of all orders with the same vendor ID. We are defining Â“previousÂ” based on order date.)
 Select P.PurchaseOrderID, P.VendorID, P.OrderDate, P.TotalDue, PV.Name VendorName,
 
 LAG(TotalDue,1) OVER (PARTITION BY P.VendorID ORDER BY P.OrderDate) PrevOrderFromVendorAmt
@@ -451,7 +451,7 @@ From AdventureWorks2019.Purchasing.PurchaseOrderHeader P
 
 Order By P.VendorID, P.OrderDate
 
--- Exercise 3: Enhance with "NextOrderByEmployeeVendor", (returns the “next” vendor name (the “name” field from Purchasing.Vendor) within the group of all orders that have the same EmployeeID value in Purchasing.PurchaseOrderHeader)
+-- Exercise 3: Enhance with "NextOrderByEmployeeVendor", (returns the Â“nextÂ” vendor name (the Â“nameÂ” field from Purchasing.Vendor) within the group of all orders that have the same EmployeeID value in Purchasing.PurchaseOrderHeader)
 Select P.PurchaseOrderID, P.EmployeeID, P.OrderDate, P.TotalDue, PV.Name VendorName,
 
 LAG(TotalDue,1) OVER (PARTITION BY P.VendorID ORDER BY P.OrderDate) PrevOrderFromVendorAmt,
@@ -465,7 +465,7 @@ From AdventureWorks2019.Purchasing.PurchaseOrderHeader P
 
 Order By P.EmployeeID,P.OrderDate
 
--- Exercise 4: Enhance with "Next2OrderByEmployeeVendor" (returns, within the group of all orders that have the same EmployeeID, the vendor name offset TWO orders into the “future” relative to the order in the current row.)
+-- Exercise 4: Enhance with "Next2OrderByEmployeeVendor" (returns, within the group of all orders that have the same EmployeeID, the vendor name offset TWO orders into the Â“futureÂ” relative to the order in the current row.)
 Select P.PurchaseOrderID, P.EmployeeID, P.OrderDate, P.TotalDue, PV.Name VendorName,
 
 LAG(TotalDue,1) OVER (PARTITION BY P.VendorID ORDER BY P.OrderDate) PrevOrderFromVendorAmt,
@@ -516,7 +516,7 @@ From AdventureWorks2019.Sales.SalesOrderHeader
 
 --Exercises: OVER() & PARTITION BY & FIRST_VALUE()
 
--- Exercise 1: “FirstHireVacationHours” that displays – for a given job title – the amount of vacation hours possessed by the first employee hired who has that same job title. For example, if 5 employees have the title “Data Guru”, and the one of those 5 with the oldest hire date has 99 vacation hours, “FirstHireVacationHours” should display “99” for all 5 of those employees’ corresponding records in the query.)
+-- Exercise 1: Â“FirstHireVacationHoursÂ” that displays Â– for a given job title Â– the amount of vacation hours possessed by the first employee hired who has that same job title. For example, if 5 employees have the title Â“Data GuruÂ”, and the one of those 5 with the oldest hire date has 99 vacation hours, Â“FirstHireVacationHoursÂ” should display Â“99Â” for all 5 of those employeesÂ’ corresponding records in the query.)
 Select BusinessEntityID EmployeeID, JobTitle, HireDate, VacationHours,
 
 FIRST_VALUE(VacationHours) OVER (
@@ -527,9 +527,9 @@ From AdventureWorks2019.HumanResources.Employee
 Order By JobTitle, HireDate
 
 -- Exercise 2: 
-/* “HighestPrice” that displays – for a given product – the highest price that product has been listed at
-   “LowestCost” that displays the all-time lowest price for a given product
-   “PriceRange” that reflects, for a given product, the difference between its highest and lowest ever list prices */
+/* Â“HighestPriceÂ” that displays Â– for a given product Â– the highest price that product has been listed at
+   Â“LowestCostÂ” that displays the all-time lowest price for a given product
+   Â“PriceRangeÂ” that reflects, for a given product, the difference between its highest and lowest ever list prices */
 Select P.ProductID, P.Name ProductName, PLH.ListPrice, PLH.ModifiedDate,
 
 FIRST_VALUE(PLH.ListPrice) OVER(
@@ -695,7 +695,7 @@ From AdventureWorks2019.Purchasing.PurchaseOrderHeader
 Group By YEAR(OrderDate), MONTH(OrderDate)
 Order By YEAR(OrderDate), MONTH(OrderDate)
 
--- Exercise 2: Modify add "Rolling3MonthTotal", that displays  - for a given row - a running total of “SubTotal” for the prior three months (including the current row).
+-- Exercise 2: Modify add "Rolling3MonthTotal", that displays  - for a given row - a running total of Â“SubTotalÂ” for the prior three months (including the current row).
 Select *,
 	SUM(SubTotals) OVER(
 	ORDER BY OrderYear, OrderMonth ROWS BETWEEN 2 PRECEDING AND CURRENT ROW -- Including Current Row
@@ -710,7 +710,7 @@ From(
 ) SubTotTbl
 Order By OrderYear, OrderMonth
 
--- Exercise 3: Modify with "MovingAvg6Month", that calculates a rolling average of “SubTotal” for the previous 6 months, relative to the month in the “current” row. Note that this average should NOT include the current row
+-- Exercise 3: Modify with "MovingAvg6Month", that calculates a rolling average of Â“SubTotalÂ” for the previous 6 months, relative to the month in the Â“currentÂ” row. Note that this average should NOT include the current row
 Select *,
 	SUM(SubTotals) OVER(
 	ORDER BY OrderYear, OrderMonth ROWS BETWEEN 2 PRECEDING AND CURRENT ROW -- Including Current Row
@@ -728,7 +728,7 @@ From(
 ) SubTotTbl
 Order By OrderYear, OrderMonth
 
--- Exercise 4: Modify with “MovingAvgNext2Months” , that calculates a rolling average of “SubTotal” for the month in the current row and the next two months after that. This moving average will provide a kind of "forecast" for Subtotal by month
+-- Exercise 4: Modify with Â“MovingAvgNext2MonthsÂ” , that calculates a rolling average of Â“SubTotalÂ” for the month in the current row and the next two months after that. This moving average will provide a kind of "forecast" for Subtotal by month
 Select *,
 	SUM(SubTotals) OVER(
 	ORDER BY OrderYear, OrderMonth ROWS BETWEEN 2 PRECEDING AND CURRENT ROW -- Including Current Row
