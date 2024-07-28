@@ -4,6 +4,7 @@ This repository contains .sql files with advanced queries including:
 
 - Window functions
 - Sub Queries
-- CTE's & recursive CTE's
+- CTE's & Recursive CTE's
 - Temp Tables
-- Optimization techniques - Indexing, Views etc
+- Optimization techniques - Indexing, Lookup Tables, Views etc
+- Programming SQL - Variables, User defined & Table valued functions, Stored Procedures, Dynamic SQL etc
