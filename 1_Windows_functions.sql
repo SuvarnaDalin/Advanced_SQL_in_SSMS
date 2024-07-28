@@ -1,3 +1,15 @@
+-------------- Topics Covered -------------
+/*
+	(I) OVER()
+	(II) PARTITION BY
+	(III) RANKING WITH ROW_NUMBER(), RANKING WITH RANK(), RANKING WITH DENSE_RANK()
+	(IV) LEAD & LAG
+	(V) FIRST_VALUE()
+	(VI) SUBQUERIES IN WINDOW FUNCTIONS
+	(VII) ROWS BETWEEN
+*/
+
+
 -- 1) All Rows
 Select * 
 From [AdventureWorks2019].[Sales].[SalesOrderHeader]

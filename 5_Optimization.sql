@@ -10,6 +10,16 @@
 
 -- Sln 3: Apply indexes to fields that will be used in Joins
 
+------------------------- OPTIMIZATION TECHNIQUES USED -----------------------------
+/*
+	(I) OPTIMIZE WITH UPDATE
+	(II) OPTIMIZING using Improved EXISTS With UPDATE
+	(III) OPTIMIZING with INDEX
+	(IV) OPTIMIZING with LOOKUP TABLES
+	(V) OPTIMIZING with VIEWS
+	
+*/
+
 -- (I) OPTIMIZE WITH UPDATE
 
 -- 1) Create a table with multi joins

@@ -1,3 +1,13 @@
+-------------------- Topics Covered -----------
+/*
+	(I) Using SELECT INTO TEMP_TBL_NAME
+	(II) DELETE TEMP TABLE
+	(III) CREATE and INSERT using TEMP TABLES
+	(IV) TRUNCATE - Clearing & Reusing Tables
+	(V) UPDATE 
+	(VI) DELETE 
+*/
+
 -- Temp Tables vs CTE
 -- CTEs can only be used in the current query scope & hence we cannot re use the virtual tables created by CTEs for different purposes.
 -- Tem Tables  instead of being limited by the scope of the current query, are only limited by the current session.
@@ -10,6 +20,7 @@
 
 SELECT 
 	OrderDate,
+
 	DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) OrderMonth,
 	TotalDue,
 	ROW_NUMBER() OVER(PARTITION BY DATEFROMPARTS(YEAR(OrderDate),MONTH(OrderDate),1) ORDER BY TotalDue DESC) OrderRank
