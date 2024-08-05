@@ -1,6 +1,7 @@
 -------------- Topics Covered --------------
 /*
 	(I) Variables
+	(II) User Defined Functions
 */
 
 -- To push past traditional SQL querying and introduce some programming techniques more commonly associated with programming languages like Python and JavaScript.
@@ -149,10 +150,72 @@ SELECT @PayPeriodStart
 SELECT @PayPeriodEnd
 
 
+-- (II) User Defined Functions
+-- Define new fundtions which may not already be there in SQL language
+-- Naming convention start with ufn - user defined function
+-- After 'Returns' statement follow the syntax as a template
+-- User Defined Funtions live inside 'Programmability'--> 'Functions' in Object Explorer
+
+-- 6) Define a function that returns todays date
+USE AdventureWorks2019
+GO
+CREATE FUNCTION dbo.ufnCurrentDate()
+RETURNS DATE
+AS
+BEGIN
+	RETURN CAST(GETDATE() AS DATE)
+END
+
+-- 7) Use the new function created
+Select 
+	SalesOrderID,
+	OrderDate,
+	DueDate,
+	ShipDate,
+	dbo.ufnCurrentDate() [Today]
+From AdventureWorks2019.Sales.SalesOrderHeader A
+Where YEAR(A.OrderDate) = 2011
 
 
+-- 8) Create a function to return ElapsedBusinessDays shown in the below query
+Select
+	SalesOrderID,
+	OrderDate,
+	DueDate,
+	ShipDate,
+	ElapsedBusinessDays = (
+	Select COUNT(*)
+	From AdventureWorks2019.dbo.Calendar B
+	Where B.DateValue between A.OrderDate AND A.SHipDate
+		AND B.WeekendFlag = 0
+		AND B.HolidayFlag = 0
+	)-1
+From AdventureWorks2019.Sales.SalesOrderHeader A
+Where YEAR(A.OrderDate) = 2011
 
+--------------- FUNCTION -----------------
+USE AdventureWorks2019
+GO
+CREATE FUNCTION dbo.ufnElapsedBusinessdays(@StartDate DATE, @EndDate DATE)
+RETURNS INT
+AS
+BEGIN
+RETURN
+(
+	Select COUNT(*)
+	From AdventureWorks2019.dbo.Calendar
+	Where DateValue between @StartDate AND @EndDate
+		AND WeekendFlag = 0
+		AND HolidayFlag = 0
+) -1
+END
 
-
-
-
+-- 9) Use the new function in the above query
+Select
+	SalesOrderID,
+	OrderDate,
+	DueDate,
+	ShipDate,
+	dbo.ufnElapsedBusinessdays(OrderDate, ShipDate) ElapsedBusinessDays
+From AdventureWorks2019.Sales.SalesOrderHeader
+Where YEAR(OrderDate) = 2011
